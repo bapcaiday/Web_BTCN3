@@ -1,0 +1,41 @@
+<div class="alert alert-info d-flex justify-content-between">
+  <span>21120185</span>
+  <h1>Movie Information</h1>
+  <div class="one-quarter" id="switch">
+  <input type="checkbox" class="checkbox" id="chk" />
+  <label class="label" for="chk">
+      <i class="fas fa-moon"></i>
+      <i class="fas fa-sun"></i>
+      <div class="ball"></div>
+  </label>
+</div>
+</div>
+
+<nav class="navbar navbar-light bg-light justify-content-between mt-4">
+  <a class="navbar-brand">Home</a>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+
+<script>
+  const chk = document.getElementById('chk');
+
+chk.addEventListener('change', () => {
+	document.body.classList.toggle('dark');
+});
+
+// SOCIAL PANEL JS
+const floating_btn = document.querySelector('.floating-btn');
+const close_btn = document.querySelector('.close-btn');
+const social_panel_container = document.querySelector('.social-panel-container');
+
+floating_btn.addEventListener('click', () => {
+	social_panel_container.classList.toggle('visible')
+});
+
+close_btn.addEventListener('click', () => {
+	social_panel_container.classList.remove('visible')
+});
+</script>
