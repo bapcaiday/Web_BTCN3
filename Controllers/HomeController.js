@@ -1,4 +1,5 @@
 const Movie=require("../models/Movie");
+const Actor=require("../models/Actors")
 const db=require('../utils/db')
 
 function chunkArray(array, chunkSize) {
@@ -12,8 +13,10 @@ function chunkArray(array, chunkSize) {
 class HomeController{
     async index(req,res,next){
         try{
-            const dt=await Movie.run();
-            await db.import('Movie',dt);
+            const dt1=await Movie.run();
+            const dt2=await Actor.run();
+            await db.import('Movie',dt1);
+            await db.import('Actor',dt2);
             const top5HighestRating=await Movie.get5HighestRating();
             const top30HighestBoxOffice=await Movie.get30HighestBoxOffice();
             const chunkedMovies = chunkArray(top30HighestBoxOffice, 3);

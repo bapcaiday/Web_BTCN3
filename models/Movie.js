@@ -37,6 +37,7 @@ module.exports=class Movie{
             const rawData=fs.readFileSync('./data/data.json');
             const jsonData=JSON.parse(rawData);
 
+
             return jsonData.Movies.map(p=>{
                 return new Movie(p);
             });
@@ -70,6 +71,13 @@ module.exports=class Movie{
 
     static async search(clName,_id){
         const data=await db.search(tbName,clName,_id);
+        for (const dt of data){
+            const actList=[];
+            for (const rec of dt.actorList){
+                actList.push(JSON.parse(rec));
+            }
+            dt.actorList=actList;
+        }
         return data;
     }
 
@@ -77,5 +85,8 @@ module.exports=class Movie{
         const data=await db.searchLike(tbName,clName,_id);
         return data;
     }
-
+    static async searchInclude(clName,_id){
+        const data=await db.searchInclude(tbName,clName,_id);
+        return data;
+    }
 }

@@ -12,7 +12,6 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><strong>Genre:</strong> {{this.genreList}}</li>
-          <li class="list-group-item"><strong>Language:</strong> {{this.languages}}</li>
           <li class="list-group-item"><strong>IMDb Rating:</strong> {{this.imDbRating}}</li>
         </ul>
       </div>
@@ -20,3 +19,11 @@
   </div>
 </div>
 {{/each}}
+
+<p>Actor:
+{{#each actList}}
+              <a href="/actors/{{this.id}}">{{this.name}} </a>,
+{{/each}}
+</p>
+
+

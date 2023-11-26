@@ -1,0 +1,36 @@
+<div class="mt-4">
+  <div class="row" id="movies-container">
+    {{#each movies}}
+      <div class="col-sm-3 col-lg-3">
+        <div class="card card-course-item">
+          <a href="/movies/{{this.id}}">
+            <img
+              class="card-img-top"
+              src="{{this.image}}"
+              height="200"
+              alt="{{this.title}}"
+            />
+          </a>
+
+          <div class="card-body">
+            <a href="/movies/{{this.id}}">
+              <h5 class="card-title">{{this.title}}</h5>
+            </a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<div class="mt-4">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {{#loop totalPages }}
+       <li class="page-item"><a class="page-link" data-id="{{sum this 1}}" href="/search?q={{key}}&page={{sum this 1}}">{{sum this 1}}</a></li>
+      {{/loop}}
+    </ul>
+  </nav>
+</div>
+
+

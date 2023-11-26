@@ -1,0 +1,58 @@
+{{#each actor}}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">{{this.name}} ({{this.birthDate}})</h5>
+        </div>
+        <img src="{{this.image}}" class="card-img-top" alt="{{this.name}}">
+        <div class="card-body">
+          <p class="card-text"><strong>Role:</strong> {{this.role}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Awards:</strong> {{this.awards}}</li>
+          <li class="list-group-item"><strong>Height:</strong> {{this.height}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
+<p>Related Movies</p>
+
+<div id="demo1" class="carousel slide mt-4" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#demo1" data-slide-to="0" class="active"></li>
+    <li data-target="#demo1" data-slide-to="1"></li>
+    <li data-target="#demo1" data-slide-to="2"></li>
+    <li data-target="#demo1" data-slide-to="3"></li>
+    <li data-target="#demo1" data-slide-to="4"></li>
+  </ul>
+  <div class="carousel-inner ">
+    {{#each movList}}
+      <div class="carousel-item {{#if @first}}active{{/if}}">
+        <div class="row">
+          {{#each this}}
+            <div class="col-md-4">
+              <div class="card">
+                <img src="{{this.image}}" height="200" class="card-img-top" alt="{{this.title}}">
+                <div class="carousel-caption d-none d-md-block">
+                    <p>{{this.title}}</p>
+                 </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/each}}
+    
+  </div>
+  <a class="carousel-control-prev" href="#demo1" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo1" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>

@@ -88,6 +88,21 @@ module.exports={
             dbcn.done();
           }
     },
+    searchInclude: async(tbName,clName, _id)=>{
+        let dbcn=null;
+        try {
+            dbcn=await db.connect();
+            const result=await dbcn.any(`SELECT * FROM $1:name WHERE $3 = ANY($2:name)`,[tbName,clName,_id]);
+            return result;
+          } catch (error) {
+            console.error('ERROR:', error);
+          } 
+          finally{
+            dbcn.done();
+          }
+    },
+
+    
 
 };
 
