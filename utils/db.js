@@ -41,7 +41,7 @@ module.exports={
         let dbcn=null;
         try{
             dbcn=await db.connect();
-            const result = await dbcn.one('SELECT COUNT(*) FROM $1:name', tbName);
+            const result = await dbcn.one(`SELECT COUNT(*) FROM $1:name`, tbName);
             const rowCount = result.count;
             if (rowCount > 0) {
                 console.log(`Table has data.`);
@@ -61,6 +61,33 @@ module.exports={
             // Close the database connection
             dbcn.done();
         }
-        }
+        },
+    search: async(tbName,clName, _id)=>{
+        let dbcn=null;
+        try {
+            dbcn=await db.connect();
+            const result=await dbcn.any(`SELECT * FROM $1:name WHERE $2:name=$3`,[tbName,clName,_id]);
+            return result;
+          } catch (error) {
+            console.error('ERROR:', error);
+          } 
+          finally{
+            dbcn.done();
+          }
+    }, 
+    searchLike: async(tbName,clName, _id)=>{
+        let dbcn=null;
+        try {
+            dbcn=await db.connect();
+            const result=await dbcn.any(`SELECT * FROM $1:name WHERE $2:name ILIKE '%$3:value%'`,[tbName,clName,_id]);
+            return result;
+          } catch (error) {
+            console.error('ERROR:', error);
+          } 
+          finally{
+            dbcn.done();
+          }
+    },
+
 };
 

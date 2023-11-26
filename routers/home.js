@@ -3,6 +3,7 @@ const route=express.Router();
 
 const HomeController=require('../Controllers/HomeController');
 
+
 route.get('/',HomeController.index);
 
 

@@ -1,4 +1,67 @@
-<div>
-   {{#each }}
-   {{/each}}
+<div id="demo" class="carousel slide mt-4" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+    <li data-target="#demo" data-slide-to="3"></li>
+    <li data-target="#demo" data-slide-to="4"></li>
+  </ul>
+  <div class="carousel-inner ">
+    {{#each Ratings}}
+      <div class="carousel-item {{#if @first}}active{{/if}}">
+        <a href="/movies/{{this.id}}">
+        <img src="{{this.image}}" alt="{{this.title}}" width="30%" height="300" class="img-fluid d-block mx-auto">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{this.title}} ({{this.year}})</h5>
+          <p>{{this.genreList}}</p>
+        </div>
+        </a>
+      </div>
+    {{/each}}
+    
+  </div>
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
 </div>
+
+<div id="demo1" class="carousel slide mt-4" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#demo1" data-slide-to="0" class="active"></li>
+    <li data-target="#demo1" data-slide-to="1"></li>
+    <li data-target="#demo1" data-slide-to="2"></li>
+    <li data-target="#demo1" data-slide-to="3"></li>
+    <li data-target="#demo1" data-slide-to="4"></li>
+  </ul>
+  <div class="carousel-inner ">
+    {{#each BoxOffices}}
+      <div class="carousel-item {{#if @first}}active{{/if}}">
+        <div class="row">
+          {{#each this}}
+            <div class="col-md-4">
+              <div class="card">
+                <a href="/movies/{{this.id}}">
+                <img src="{{this.image}}" height="200" class="card-img-top" alt="{{this.title}}">
+                </a>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/each}}
+    
+  </div>
+  <a class="carousel-control-prev" href="#demo1" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo1" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+
+
+    

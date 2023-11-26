@@ -58,7 +58,24 @@ module.exports=class Movie{
 
     static async get5HighestRating(){
         const data=await db.getAll(tbName);
-        
+        data.sort((a, b) => b.imDbRating - a.imDbRating);
+        return data.slice(0,5);
+    }
+
+    static async get30HighestBoxOffice(){
+        const data=await db.getAll(tbName);
+        data.sort((a, b) => b.boxOffice - a.boxOffice);
+        return data.slice(0,30);
+    }
+
+    static async search(clName,_id){
+        const data=await db.search(tbName,clName,_id);
+        return data;
+    }
+
+    static async searchLike(clName,_id){
+        const data=await db.searchLike(tbName,clName,_id);
+        return data;
     }
 
 }
