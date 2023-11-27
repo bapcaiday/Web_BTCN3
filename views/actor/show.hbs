@@ -4,7 +4,7 @@
     <div class="col-md-8 offset-md-2">
       <div class="card">
         <div class="card-header">
-          <h5 class="card-title">{{this.name}} ({{this.birthDate}})</h5>
+          <h5 class="card-title">{{this.name}}</h5>
         </div>
         <img src="{{this.image}}" class="card-img-top" alt="{{this.name}}">
         <div class="card-body">
@@ -12,6 +12,7 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><strong>Awards:</strong> {{this.awards}}</li>
+          <li class="list-group-item"><strong>Birthdate:</strong> {{this.birthDate}}</li>
           <li class="list-group-item"><strong>Height:</strong> {{this.height}}</li>
         </ul>
       </div>
@@ -20,7 +21,7 @@
 </div>
 {{/each}}
 
-<p>Related Movies</p>
+<h4 class="text-light mt-4">Related Movies</h4>
 
 <div id="demo1" class="carousel slide mt-4" data-ride="carousel">
   <ul class="carousel-indicators">

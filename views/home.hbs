@@ -10,9 +10,9 @@
     {{#each Ratings}}
       <div class="carousel-item {{#if @first}}active{{/if}}">
         <a href="/movies/{{this.id}}">
-        <img src="{{this.image}}" alt="{{this.title}}" width="30%" height="300" class="img-fluid d-block mx-auto">
+        <img src="{{this.image}}" alt="{{this.title}}" width="33%" height="300" class="img-fluid d-block mx-auto">
         <div class="carousel-caption d-none d-md-block">
-          <h5>{{this.title}} ({{this.year}})</h5>
+          <h5 style="font-size: 15px;">{{this.title}} ({{this.year}})</h5>
           <p>{{this.genreList}}</p>
         </div>
         </a>
@@ -28,6 +28,8 @@
   </a>
 </div>
 
+<h4 class="text-light mt-4">Top Box Office</h4>
+
 <div id="demo1" class="carousel slide mt-4" data-ride="carousel">
   <ul class="carousel-indicators">
     <li data-target="#demo1" data-slide-to="0" class="active"></li>
@@ -42,9 +44,9 @@
         <div class="row">
           {{#each this}}
             <div class="col-md-4">
-              <div class="card">
-                <a href="/movies/{{this.id}}">
-                <img src="{{this.image}}" height="200" class="card-img-top" alt="{{this.title}}">
+              <div class="card ">
+                <a class="zoom-effect" id="zoomableDiv" data-id="{{this.title}}({{this.year}})" href="/movies/{{this.id}}">
+                <img  src="{{this.image}}" height="200" class="card-img-top" alt="{{this.title}}">
                 </a>
               </div>
             </div>
@@ -61,6 +63,21 @@
     <span class="carousel-control-next-icon"></span>
   </a>
 </div>
+
+<h4 class="text-light mt-4">Top Favorite</h4>
+
+<script>
+  $(document).ready(function(){
+    $("#zoomableDiv").hover(
+      function() {
+        $(this).css("transform", "scale(1.5)");
+      },
+      function() {
+        $(this).css("transform", "scale(1)");
+      }
+    );
+  });
+</script>
 
 
 

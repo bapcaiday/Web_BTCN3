@@ -51,6 +51,10 @@ module.exports={
                 for (const data of dataList){
                     //console.log(data);
                     const query=pgp.helpers.insert(data,null,tbName);
+                    if (tbName=="Review")
+                    {
+                        const rs=await db.one(query+'Returning items');
+                    }
                     const rs=await db.one(query+'Returning id');
                     console.log(rs);
                 }

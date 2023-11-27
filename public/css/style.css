@@ -1,5 +1,5 @@
 body {
-	background-color: #fafafa;
+	background-color: #d6d5d5;
 	transition: background 0.2s linear;
 }
 
@@ -50,3 +50,11 @@ body.dark {
 .fa-sun {
 	color: #f39c12;
 }
+
+.zoom-effect {
+	transition: transform 0.3s ease;
+  }
+
+  .zoom-effect:hover {
+	transform: scale(1.5);
+  }

@@ -20,10 +20,35 @@
 </div>
 {{/each}}
 
-<p>Actor:
-{{#each actList}}
-              <a href="/actors/{{this.id}}">{{this.name}} </a>,
-{{/each}}
-</p>
+
+<div class="container mt-5">
+   <div class="card-deck mt-3 bg-light pl-3">
+   <h2>Actors</h2>
+   <p>
+  {{#each actList}}
+              <a class="text-success" href="/actors/{{this.id}}">{{this.name}} </a>,
+  {{/each}}
+</p> 
+</div>
+</div>
+
+<div class="container mt-5">
+  <h2>Review</h2>
+  
+  <!-- Review List -->
+  {{#each reviewList}}
+  <div class="card-deck mt-3">
+    <!-- Review 1 -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{this.username}}</h5>
+        <p class="card-text">{{this.date}}</p>
+        <p class="card-text">{{this.content}}</p>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+
 
 

@@ -69,6 +69,7 @@ module.exports=class Movie{
         return data.slice(0,30);
     }
 
+
     static async search(clName,_id){
         const data=await db.search(tbName,clName,_id);
         for (const dt of data){
