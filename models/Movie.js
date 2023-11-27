@@ -69,6 +69,12 @@ module.exports=class Movie{
         return data.slice(0,30);
     }
 
+    static async get30LatestRelease(){
+        const data=await db.getAll(tbName);
+        data.sort((a, b) => b.releaseDate - a.releaseDate);
+        return data.slice(0,30);
+    }
+
 
     static async search(clName,_id){
         const data=await db.search(tbName,clName,_id);

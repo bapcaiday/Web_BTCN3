@@ -20,11 +20,16 @@ class HomeController{
             await db.import('Movie',dt1);
             await db.import('Actor',dt2);
             await db.import('Review',dt3);
+
             const top5HighestRating=await Movie.get5HighestRating();
 
             const top30HighestBoxOffice=await Movie.get30HighestBoxOffice();
             const chunkedMovies = chunkArray(top30HighestBoxOffice, 3);
-            res.render('home',{Ratings:top5HighestRating, BoxOffices: chunkedMovies});
+
+            const top30LatestRelease=await Movie.get30LatestRelease();
+            const chunkedMovies1 = chunkArray(top30LatestRelease, 3);
+
+            res.render('home',{Ratings:top5HighestRating, BoxOffices: chunkedMovies,LatestRelease: chunkedMovies1});
             
         }
         catch (error){

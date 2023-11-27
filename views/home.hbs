@@ -11,11 +11,12 @@
       <div class="carousel-item {{#if @first}}active{{/if}}">
         <a href="/movies/{{this.id}}">
         <img src="{{this.image}}" alt="{{this.title}}" width="33%" height="300" class="img-fluid d-block mx-auto">
+        </a>
         <div class="carousel-caption d-none d-md-block">
           <h5 style="font-size: 15px;">{{this.title}} ({{this.year}})</h5>
           <p>{{this.genreList}}</p>
         </div>
-        </a>
+        
       </div>
     {{/each}}
     
@@ -64,7 +65,41 @@
   </a>
 </div>
 
-<h4 class="text-light mt-4">Top Favorite</h4>
+<h4 class="text-light mt-4">Latest Release</h4>
+
+<div id="demo2" class="carousel slide mt-4" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#demo2" data-slide-to="0" class="active"></li>
+    <li data-target="#demo2" data-slide-to="1"></li>
+    <li data-target="#demo2" data-slide-to="2"></li>
+    <li data-target="#demo2" data-slide-to="3"></li>
+    <li data-target="#demo2" data-slide-to="4"></li>
+  </ul>
+  <div class="carousel-inner ">
+    {{#each LatestRelease}}
+      <div class="carousel-item {{#if @first}}active{{/if}}">
+        <div class="row">
+          {{#each this}}
+            <div class="col-md-4">
+              <div class="card ">
+                <a class="zoom-effect" id="zoomableDiv" data-id="{{this.title}}({{this.year}})" href="/movies/{{this.id}}">
+                <img  src="{{this.image}}" height="200" class="card-img-top" alt="{{this.title}}">
+                </a>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/each}}
+    
+  </div>
+  <a class="carousel-control-prev" href="#demo2" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo2" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
 
 <script>
   $(document).ready(function(){
