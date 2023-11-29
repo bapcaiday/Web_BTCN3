@@ -9,3 +9,7 @@ Handlebars.registerHelper('loop', function (n, block) {
   }
   return accum;
 });
+
+Handlebars.registerHelper('sum', function (a,b) {
+  return a+b
+});

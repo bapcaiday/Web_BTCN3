@@ -3,6 +3,7 @@ const path=require('path');
 const express=require ('express');
 const {engine}=require('express-handlebars');
 const methodOverride=require("method-override");
+const help=require('./21185')
 
 const app=express();
 const port=process.env.PORT || 3000;
@@ -25,16 +26,7 @@ app.engine(
     'hbs',
     engine({
         extname: '.hbs',
-        helpers: {
-            sum: (a,b)=>a+b,
-            loop: function (n, block) {
-                let accum = '';
-                for (let i = 0; i < n; ++i) {
-                  accum += block.fn(i);
-                }
-                return accum;
-              },
-        }
+        helpers: help,
     })
 );
 
