@@ -1,12 +1,11 @@
 const homeRouter=require('./home')
-const movieRouter=require('./movie')
-const searchRouter=require('./search')
-const actorRouter=require('./actor')
+const accountRouter=require('./account')
+const productRouter=require('./product')
+
 
 function route(app){
-    app.use('/actors',actorRouter);
-    app.use('/search',searchRouter);
-    app.use('/movies',movieRouter);
+    app.use('/product',productRouter);
+    app.use('/account',accountRouter);
     app.use('/',homeRouter);
 }
 

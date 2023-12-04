@@ -32,40 +32,51 @@ module.exports={
                 dbcn.done();
             }
     },
-    insert: async(tbName, entity)=>{
+    insert: async(tbName, entity, idName='ID')=>{
         const query=pgp.helpers.insert(entity,null, tbName);
-        const data=await db.one(query+'Returning id');
+        const data=await db.one(query+`RETURNING "${idName}"`);
         return data;
     }, 
-    import: async(tbName, dataList)=>{
+    update: async(tbName,clName,value,primaryKey,key)=>{
+      const result = await db.result(
+        'UPDATE $1:name SET $2:name = $3 WHERE $4:name = $5',
+        [tbName, clName, value,primaryKey,key] 
+    );
+      console.log(result);
+    },
+    delete: async(tbName,primaryKey,key)=>{
+      const result = await db.result(
+        'DELETE FROM $1:name WHERE  $2:name = $3',
+        [tbName,primaryKey,key] // Thay thế bằng giá trị ID của bản ghi bạn muốn xóa
+        );
+      console.log(result);
+    },
+    get: async(tbName,clName, _id)=>{
         let dbcn=null;
-        try{
+        try {
             dbcn=await db.connect();
-            const result = await dbcn.one(`SELECT COUNT(*) FROM $1:name`, tbName);
-            const rowCount = result.count;
-            if (rowCount > 0) {
-                console.log(`Table has data.`);
-                
-            } else {
-                console.log(`Table is empty.`);
-                for (const data of dataList){
-                    //console.log(data);
-                    const query=pgp.helpers.insert(data,null,tbName);
-                    if (tbName=="Review")
-                    {
-                        const rs=await db.one(query+'Returning items');
-                    }
-                    const rs=await db.one(query+'Returning id');
-                    console.log(rs);
-                }
-            }
-        } catch (error) {
-            console.error('Error checking table data:', error);
-        } finally {
-            // Close the database connection
+            const result=await dbcn.oneOrNone(`SELECT * FROM $1:name WHERE $2:name=$3`,[tbName,clName,_id]);
+            return result;
+          } catch (error) {
+            console.error('ERROR:', error);
+          } 
+          finally{
             dbcn.done();
+          }
+    }, 
+    get: async(tbName,clName, _id)=>{
+      let dbcn=null;
+      try {
+          dbcn=await db.connect();
+          const result=await dbcn.oneOrNone(`SELECT * FROM $1:name WHERE $2:name=$3`,[tbName,clName,_id]);
+          return result;
+        } catch (error) {
+          console.error('ERROR:', error);
+        } 
+        finally{
+          dbcn.done();
         }
-        },
+    }, 
     search: async(tbName,clName, _id)=>{
         let dbcn=null;
         try {
@@ -79,34 +90,7 @@ module.exports={
             dbcn.done();
           }
     }, 
-    searchLike: async(tbName,clName, _id)=>{
-        let dbcn=null;
-        try {
-            dbcn=await db.connect();
-            const result=await dbcn.any(`SELECT * FROM $1:name WHERE $2:name ILIKE '%$3:value%'`,[tbName,clName,_id]);
-            return result;
-          } catch (error) {
-            console.error('ERROR:', error);
-          } 
-          finally{
-            dbcn.done();
-          }
-    },
-    searchInclude: async(tbName,clName, _id)=>{
-        let dbcn=null;
-        try {
-            dbcn=await db.connect();
-            const result=await dbcn.any(`SELECT * FROM $1:name WHERE $3 = ANY($2:name)`,[tbName,clName,_id]);
-            return result;
-          } catch (error) {
-            console.error('ERROR:', error);
-          } 
-          finally{
-            dbcn.done();
-          }
-    },
-
     
-
+ 
 };
 
